@@ -1,0 +1,35 @@
+---
+- name: EDA | Satellite | Listen for events on a webhook
+  hosts: localhost
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+
+  rules:
+    - name: EDA | Satellite | Host Created
+      condition: event.payload is defined and event.payload.event_type == "host_created" 
+      actions:
+        - run_job_template:
+            name: Handle Satellite Host Created
+            job_args:
+              extra_vars:
+                satellite_data: "{{ event.payload }}"
+    
+    - name: EDA | Satellite | Host Destroyed
+      condition: event.payload is defined and event.payload.event_type == "host_destroyed" 
+      actions:
+        - run_job_template:
+            name: Handle Satellite Host Destroyed
+            job_args:
+              extra_vars:
+                satellite_data: "{{ event.payload }}"
+
+    - name: EDA | Satellite | Host Updated
+      condition: event.payload is defined and event.payload.event_type == "host_updated" 
+      actions:
+        - run_job_template:
+            name: Handle Satellite Host Updated
+            job_args:
+              extra_vars:
+                satellite_data: "{{ event.payload }}"
