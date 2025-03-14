@@ -1,0 +1,19 @@
+{
+  "event_type": "<%= event.event_type %>",
+  "host": {
+    "name": "<%= host.name %>",
+    "id": "<%= host.id %>",
+    "ip": "<%= host.ip %>",
+    "mac": "<%= host.mac %>",
+    "operating_system": "<%= host.operatingsystem %>",
+    "architecture": "<%= host.architecture %>",
+    "environment": "<%= host.environment %>",
+    "hostgroup": "<%= host.hostgroup %>",
+    "organization": "<%= host.organization %>",
+    "location": "<%= host.location %>",
+    "created_at": "<%= host.created_at %>",
+    "updated_at": "<%= host.updated_at %>",
+    "parameters": <%= host.parameters.to_json %>
+  },
+  "timestamp": "<%= Time.now.utc.iso8601 %>"
+}
