@@ -1,0 +1,8 @@
+---
+- name: EDA | Satellite | Handle Host Events
+  hosts: localhost
+  
+  tasks:
+  - name: Print out Satellite event
+    ansible.builtin.debug:
+      var: "{{ satellite_data }}"
