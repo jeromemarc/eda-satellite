@@ -8,7 +8,7 @@
 
   rules:
     - name: EDA | Satellite | Host Created
-      condition: event.payload is defined and event.payload.event_type == "host_created" 
+      condition: event.payload is defined and event.payload.event_name == "host_created.event.foreman" 
       actions:
         - run_job_template:
             name: Handle Satellite Host Created
@@ -17,7 +17,7 @@
                 satellite_data: "{{ event.payload }}"
     
     - name: EDA | Satellite | Host Destroyed
-      condition: event.payload is defined and event.payload.event_type == "host_destroyed" 
+      condition: event.payload is defined and event.payload.event_name == "host_destroyed.event.foreman" 
       actions:
         - run_job_template:
             name: Handle Satellite Host Destroyed
@@ -26,7 +26,7 @@
                 satellite_data: "{{ event.payload }}"
 
     - name: EDA | Satellite | Host Updated
-      condition: event.payload is defined and event.payload.event_type == "host_updated" 
+      condition: event.payload is defined and event.payload.event_name == "host_updated.event.foreman" 
       actions:
         - run_job_template:
             name: Handle Satellite Host Updated
